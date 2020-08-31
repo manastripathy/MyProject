@@ -15,10 +15,10 @@ pipeline {
 						archiveArtifacts artifacts: '**/*.war' 
 					}
 				}
-				stage('Deploy on stage environment')
-				{
-					build job: 'Deploy_Artifact_On_Stage_Env_CP'			
-				}		
-		}
+			}
+			stage('Deploy on stage environment')
+			{
+				build job: 'Deploy_Artifact_On_Stage_Env_CP'			
+			}		
 	}
 }
