@@ -1,0 +1,31 @@
+pipeline {
+	agent any
+	stages {
+			stage('Build Application')
+			{
+				steps 
+				{
+					bat 'mvn -f pom.xml clean package'
+				}
+				post 
+				{
+					success 
+					{
+						echo "Now archiving the artifacts ..."
+						archiveArtifacts artifacts: '**/*.war' 
+					}
+				}
+			}
+			stage('Deploy on stage environment')
+			{
+				steps {
+					build job: 'Deploy_Artifact_On_Stage_Env_CP'			
+				}
+			}
+			stage('Deploy to production') {
+				steps {
+					build job: 'Deploy_Artifact_On_Prod_Env_CP'
+				}
+			}
+	}
+}
