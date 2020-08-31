@@ -21,6 +21,11 @@ pipeline {
 				steps {
 					build job: 'Deploy_Artifact_On_Stage_Env_CP'			
 				}
-			}		
+			}
+			stage('Deploy to production') {
+				steps {
+					build job: 'Deploy_Artifact_On_Prod_Env_CP'
+				}
+			}
 	}
 }
