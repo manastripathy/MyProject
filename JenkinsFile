@@ -18,7 +18,9 @@ pipeline {
 			}
 			stage('Deploy on stage environment')
 			{
-				build job: 'Deploy_Artifact_On_Stage_Env_CP'			
+				steps {
+					build job: 'Deploy_Artifact_On_Stage_Env_CP'			
+				}
 			}		
 	}
 }
