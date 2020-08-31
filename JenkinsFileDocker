@@ -16,16 +16,11 @@ pipeline {
 					}
 				}
 			}
-			stage('Deploy on stage environment')
-			{
+			stage('Create tomcat docker image'){
 				steps {
-					build job: 'Deploy_Artifact_On_Stage_Env_CP'			
+					batch 'docker build . -t tomatsamplewebapp:${env.BUILD_ID}'
 				}
-			}
-			stage('Deploy to production') {
-				steps {
-					build job: 'Deploy_Artifact_On_Prod_Env_CP'
-				}
-			}
+			}		
+			
 	}
 }
